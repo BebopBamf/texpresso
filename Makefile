@@ -38,7 +38,7 @@ ifeq ($(UNAME), Linux)
 config:
 	mkdir -p build/objects
 # LDCC: some Linux distribution build mupdf with C++ dependencies,
-	echo >Makefile.config "CFLAGS=-O2 -ggdb -I. -fPIC"
+	echo >Makefile.config "CFLAGS=-O2 -Wall -Wextra -ggdb -I. -fPIC"
 	echo >>Makefile.config 'CC=gcc $$(CFLAGS)'
 	echo >>Makefile.config 'LDCC=g++ $$(CFLAGS)'
 	echo >>Makefile.config "LIBS=-lmupdf -lm `CC=gcc ./mupdf-config.sh` -lz -ljpeg -ljbig2dec -lharfbuzz -lfreetype -lopenjp2 -lgumbo -lSDL2"

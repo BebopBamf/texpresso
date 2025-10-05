@@ -1,3 +1,7 @@
+build-debug
+build-pgo
+build-release
+
 build
 share
 driver/proxy
