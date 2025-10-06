@@ -31,44 +31,42 @@
 #include "renderer.h"
 
 enum custom_events {
-  SCAN_EVENT,
-  RENDER_EVENT,
-  RELOAD_EVENT,
-  STDIN_EVENT,
+	SCAN_EVENT,
+	RENDER_EVENT,
+	RELOAD_EVENT,
+	STDIN_EVENT,
 
-  EVENT_COUNT,
+	EVENT_COUNT,
 };
 
-struct initial_state
-{
-  int initialized;
-  int page;
-  int need_synctex;
-  int zoom;
-  txp_renderer_config config;
-  fz_display_list *display_list;
+struct initial_state {
+	int initialized;
+	int page;
+	int need_synctex;
+	int zoom;
+	txp_renderer_config config;
+	fz_display_list *display_list;
 };
 
-enum editor_protocol
-{
-  EDITOR_SEXP,
-  EDITOR_JSON,
+enum editor_protocol {
+	EDITOR_SEXP,
+	EDITOR_JSON,
 };
 
 struct persistent_state {
-  struct initial_state initial;
-  enum editor_protocol protocol;
-  int line_output;
-  Uint32 custom_event;
+	struct initial_state initial;
+	enum editor_protocol protocol;
+	int line_output;
+	Uint32 custom_event;
 
-  void (*schedule_event)(enum custom_events ev);
-  bool (*should_reload_binary)(void);
+	void (*schedule_event)(enum custom_events ev);
+	bool (*should_reload_binary)(void);
 
-  SDL_Window *window;
-  SDL_Renderer *renderer;
-  fz_context *ctx;
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+	fz_context *ctx;
 
-  const char *exe_path, *doc_path, *doc_name, *inclusion_path;
+	const char *exe_path, *doc_path, *doc_name, *inclusion_path;
 };
 
 bool texpresso_main(struct persistent_state *ps);
