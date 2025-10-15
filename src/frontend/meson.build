@@ -38,8 +38,10 @@ frontend_sources = [
 
 static_bin_sources = files('driver.c', 'main.c', 'logo.c')
 
-libfrontend = shared_library(
+libfrontend = static_library(
   'texpresso',
   sources : frontend_sources,
-  dependencies : [mupdf_dep]
+  link_with : libmydvi,
+  dependencies : [mupdf_dep],
+  include_directories : [headers_dir, dvi_headers]
 )

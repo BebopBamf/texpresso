@@ -10,7 +10,8 @@ subdir('src')
 
 executable('texpresso',
   static_bin_sources,
-  link_with : libfrontend,
+  link_with : [libfrontend, libmydvi],
   dependencies : [sdl2_dep],
+  include_directories : [headers_dir, dvi_headers],
   install : true
 )
