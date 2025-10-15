@@ -4,10 +4,13 @@ project('texpresso', 'c',
         default_options : ['warning_level=2']
 )
 
+sdl2_dep = dependency('sdl2')
+
 subdir('src')
 
-# executable('texpresso',
-#           frontend_sources,
-#           dependencies : [],
-#           install : true
-# )
+executable('texpresso',
+  static_bin_sources,
+  link_with : libfrontend,
+  dependencies : [sdl2_dep],
+  install : true
+)

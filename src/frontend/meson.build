@@ -1,14 +1,32 @@
+mupdf_dep = dependency('mupdf')
+
+# frontend_sources = [
+#   'driver.c',
+#   'editor.c',
+#   'engine_dvi.c',
+#   'engine_pdf.c',
+#   'fs.c',
+#   'incdvi.c',
+#   'json_parser.c',
+#   'loader.c',
+#   'logo.c',
+#   'main.c',
+#   'myabort.c',
+#   'prot_parser.c',
+#   'renderer.c',
+#   'sexp_parser.c',
+#   'sprotocol.c',
+#   'state.c',
+#   'synctex.c',
+# ]
+
 frontend_sources = [
-  'driver.c',
   'editor.c',
   'engine_dvi.c',
   'engine_pdf.c',
   'fs.c',
   'incdvi.c',
   'json_parser.c',
-  'loader.c',
-  'logo.c',
-  'main.c',
   'myabort.c',
   'prot_parser.c',
   'renderer.c',
@@ -18,6 +36,10 @@ frontend_sources = [
   'synctex.c',
 ]
 
-shared_library('libtexpresso',
-               sources : frontend_sources,
+static_bin_sources = files('driver.c', 'main.c', 'logo.c')
+
+libfrontend = shared_library(
+  'texpresso',
+  sources : frontend_sources,
+  dependencies : [mupdf_dep]
 )
